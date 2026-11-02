@@ -1,4 +1,6 @@
+pub mod calculadora;
+pub mod interfaz;
+
 fn main() {
-    println!("Hello, world!");
-    println!("Proyecto");
+    interfaz::iniciar();
 }

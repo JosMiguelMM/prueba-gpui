@@ -35,6 +35,16 @@ sistemas durante la construcción del proyecto.
 - Pregunta cuando un requisito sea ambiguo y no se pueda resolver de forma
   segura a partir del contexto.
 
+## Exploración del código
+
+- Usa `codebase-memory-mcp` como mapa principal de la base de código. Consulta
+  su índice para localizar componentes, símbolos y relaciones antes de explorar
+  archivos individualmente.
+- Verifica en los archivos relevantes los detalles necesarios antes de realizar
+  cambios; el mapa puede estar desactualizado o incompleto.
+- Si `codebase-memory-mcp` no está disponible o no contiene la información
+  necesaria, indícalo y utiliza las herramientas de búsqueda y lectura disponibles.
+
 ## Código y documentación
 
 - Todo código nuevo debe estar documentado en español, siguiendo las
