@@ -2,17 +2,17 @@
 
 ## Contexto
 
-Consulta `proposal.md` para la motivación y `specs/calculator-ui/spec.md` para el comportamiento observable. `src/main.rs` aún imprime texto y `src/interfaz/mod.rs` solo declara el límite del módulo; GPUI y `gpui_platform` ya están declarados como dependencias.
+Consulta `proposal.md` para la motivación y `specs/calculator-ui/spec.md` para el comportamiento observable. `src/main.rs` ya delega el arranque en `interfaz`, que contiene la vista estática; GPUI y `gpui_platform` ya están declarados como dependencias.
 
 ## Objetivos / Fuera de alcance
 
 **Objetivos:**
 - Construir una vista de calculadora sencilla dentro de `interfaz` y mostrarla al iniciar la aplicación GPUI.
-- Usar componentes visuales estáticos, sin estado ni callbacks de interacción.
+- Usar componentes visuales estáticos, sin estado de cálculo ni callbacks en las teclas de la calculadora.
 
 **Fuera de alcance:**
 - Modificar o invocar la lógica de `calculadora`.
-- Añadir cálculos, callbacks, captura de pulsaciones, accesibilidad de teclado, historial o estilos de marca; porcentaje y raíz cuadrada se presentan únicamente como botones visuales.
+- Añadir cálculos, callbacks en las teclas de cálculo, accesibilidad de teclado, historial o estilos de marca; porcentaje y raíz cuadrada se presentan únicamente como botones visuales.
 
 ## Decisiones
 
@@ -39,3 +39,7 @@ La implementación utilizará las capacidades de presentación ya disponibles en
 - [La aplicación pasará de imprimir texto a iniciar una ventana nativa] → Verificar durante la implementación que la ventana muestra la vista y que el binario sigue compilando.
 - [Una maqueta sin callbacks no demuestra comportamiento de cálculo] → Mantener explícito el carácter visual de este incremento y dejar la interacción para un cambio posterior.
 - [El orden exacto de los controles puede requerir ajustes por el tamaño de la ventana] → Usar una cuadrícula flexible y comprobar que todos los controles permanecen visibles en la ventana inicial.
+
+### Distribuir el espacio y permitir pantalla completa
+
+La ventana inicial mide 360 × 520 píxeles lógicos, con mínimo de 280 × 400. Una composición flexible reserva un control independiente para alternar pantalla completa y distribuye el espacio restante entre la pantalla y cinco filas de teclado. La cuadrícula conserva cuatro columnas y el cero de doble ancho. El texto, los márgenes y las separaciones se escalan con la dimensión limitante de la ventana para conservar legibilidad tanto en formato compacto como grande. No se limita el ancho total del teclado. GPUI gestiona la restauración del tamaño al salir de pantalla completa. El control de ventana es la única interacción nueva; no modifica el valor mostrado.
