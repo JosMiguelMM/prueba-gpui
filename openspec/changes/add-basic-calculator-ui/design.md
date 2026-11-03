@@ -12,7 +12,7 @@ Consulta `proposal.md` para la motivación y `specs/calculator-ui/spec.md` para 
 
 **Fuera de alcance:**
 - Modificar o invocar la lógica de `calculadora`.
-- Añadir evaluación, captura de pulsaciones, accesibilidad de teclado, historial, porcentaje, raíz cuadrada o estilos de marca.
+- Añadir cálculos, callbacks, captura de pulsaciones, accesibilidad de teclado, historial o estilos de marca; porcentaje y raíz cuadrada se presentan únicamente como botones visuales.
 
 ## Decisiones
 
@@ -24,7 +24,7 @@ La vista y sus elementos visuales pertenecen a `src/interfaz/`; `main.rs` se lim
 
 ### Usar una composición estática y convencional
 
-La pantalla ocupa la parte superior y muestra `0`. Debajo, los controles se organizan en una cuadrícula de cuatro columnas: filas de dígitos y operadores, una fila inferior con borrar (`C`), `0`, decimal y suma, y un botón de igual ancho completo al final. Los símbolos visibles serán `+`, `−`, `×`, `÷` y `.`. Los elementos tendrán apariencia de botones, pero no tendrán manejadores ni cambiarán la pantalla.
+La pantalla ocupa la parte superior y muestra `0`. Debajo, los controles se organizan en cuatro columnas: primera fila `C`, `√`, `%`, `÷`; luego las filas `7 8 9 ×`, `4 5 6 −` y `1 2 3 +`; la última fila contiene `0` ocupando dos columnas, `.`, e `=`. Los elementos tendrán apariencia de botones, pero no tendrán manejadores ni cambiarán la pantalla. Los botones `√` y `%` no ejecutan sus operaciones.
 
 Se elige esta composición común para que la interfaz sea reconocible sin introducir decisiones de diseño visual más amplias. No se fija una paleta, tipografía ni tema de marca.
 

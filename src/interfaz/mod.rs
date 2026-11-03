@@ -12,13 +12,14 @@ impl Render for Calculadora {
     fn render(&mut self, _window: &mut Window, _cx: &mut Context<Self>) -> impl IntoElement {
         div()
             .size_full()
-            .flex()
-            .flex_col()
-            .gap_3()
+            .grid()
+            .grid_cols(4)
+            .gap_2()
             .p_4()
             .bg(rgb(0x202124))
             .child(
                 div()
+                    .col_span_full()
                     .w_full()
                     .h(px(112.))
                     .flex()
@@ -30,11 +31,25 @@ impl Render for Calculadora {
                     .text_color(rgb(0xffffff))
                     .child("0"),
             )
-            .child(fila_teclas(["7", "8", "9", "÷"]))
-            .child(fila_teclas(["4", "5", "6", "×"]))
-            .child(fila_teclas(["1", "2", "3", "−"]))
-            .child(fila_teclas(["C", "0", ".", "+"]))
-            .child(tecla("=", true))
+            .child(tecla("C", 1))
+            .child(tecla("√", 1))
+            .child(tecla("%", 1))
+            .child(tecla("÷", 1))
+            .child(tecla("7", 1))
+            .child(tecla("8", 1))
+            .child(tecla("9", 1))
+            .child(tecla("×", 1))
+            .child(tecla("4", 1))
+            .child(tecla("5", 1))
+            .child(tecla("6", 1))
+            .child(tecla("−", 1))
+            .child(tecla("1", 1))
+            .child(tecla("2", 1))
+            .child(tecla("3", 1))
+            .child(tecla("+", 1))
+            .child(tecla("0", 2))
+            .child(tecla(".", 1))
+            .child(tecla("=", 1))
     }
 }
 
@@ -54,19 +69,9 @@ pub fn iniciar() {
     });
 }
 
-fn fila_teclas(etiquetas: [&'static str; 4]) -> impl IntoElement {
+fn tecla(etiqueta: &'static str, columnas: u16) -> impl IntoElement {
     div()
-        .w_full()
-        .flex()
-        .flex_row()
-        .gap_2()
-        .children(etiquetas.into_iter().map(|etiqueta| tecla(etiqueta, false)))
-}
-
-fn tecla(etiqueta: &'static str, ancho_completo: bool) -> impl IntoElement {
-    div()
-        .when(ancho_completo, |elemento| elemento.w_full())
-        .when(!ancho_completo, |elemento| elemento.flex_1())
+        .when(columnas > 1, |elemento| elemento.col_span(columnas))
         .h(px(56.))
         .flex()
         .items_center()

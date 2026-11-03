@@ -7,10 +7,10 @@ El proyecto ya separa el módulo de interfaz GPUI de la lógica de cálculo, per
 ## Qué cambia
 
 - Mostrar una pantalla de calculadora con un valor inicial de referencia `0`.
-- Dibujar botones para los dígitos `0`–`9`, suma, resta, multiplicación, división, separador decimal, borrar e igual.
+- Dibujar botones para los dígitos `0`–`9`, suma, resta, multiplicación, división, porcentaje, raíz cuadrada, separador decimal, borrar e igual.
 - Organizar la pantalla por encima de un teclado en cuadrícula de disposición convencional.
 - Mantener todos los botones sin acciones: no responden a pulsaciones ni realizan cálculos.
-- Dejar fuera porcentaje, raíz cuadrada, historial y cualquier otra operación o interacción.
+- Dejar fuera los cálculos y acciones de todos los botones, además del historial y cualquier otra interacción.
 
 ## Capacidades
 
