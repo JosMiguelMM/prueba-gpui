@@ -10,8 +10,9 @@ El proyecto ya separa el módulo de interfaz GPUI de la lógica de cálculo, per
 - Dibujar botones para los dígitos `0`–`9`, suma, resta, multiplicación, división, porcentaje, raíz cuadrada, separador decimal, borrar e igual.
 - Organizar la pantalla por encima de un teclado en cuadrícula de disposición convencional.
 - Mantener todos los botones sin acciones: no responden a pulsaciones ni realizan cálculos.
-- Permitir una ventana compacta, redimensionamiento y pantalla completa, distribuyendo los elementos según el espacio disponible.
-- Dejar fuera los cálculos, las acciones del teclado de la calculadora y el historial; los controles de ventana sí son interactivos.
+- Permitir una ventana compacta y redimensionable, distribuyendo los elementos según el espacio disponible.
+- Usar las decoraciones nativas de la ventana para ofrecer los controles de cerrar, minimizar y maximizar/restaurar que admita cada sistema; no dibujar un control propio de pantalla completa.
+- Dejar fuera los cálculos, las acciones del teclado de la calculadora y el historial.
 
 ## Capacidades
 

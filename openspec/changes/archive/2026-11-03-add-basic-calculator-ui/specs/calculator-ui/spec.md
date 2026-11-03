@@ -25,9 +25,19 @@ La interfaz SHALL abrir en una ventana compacta, permitir redimensionarla y dist
 - **WHEN** se cambia el tamaño entre el mínimo admitido y una ventana grande
 - **THEN** los elementos adaptan su tamaño y aprovechan el espacio disponible manteniendo todos los controles visibles y legibles
 
-### Requirement: La ventana permite alternar pantalla completa
-La aplicación SHALL ofrecer un control de ventana para entrar y salir de pantalla completa, independiente de los botones inertes de la calculadora.
+### Requirement: La ventana usa los controles nativos del sistema
+La aplicación SHALL conservar las decoraciones nativas de su ventana y no dibujar controles propios para cerrar, minimizar, maximizar o entrar en pantalla completa. La disponibilidad y el comportamiento de estos controles SHALL seguir las convenciones del sistema operativo y del gestor de ventanas.
 
-#### Scenario: Se entra y sale de pantalla completa
-- **WHEN** se activa el control de pantalla completa y después se vuelve a activar
-- **THEN** la calculadora ocupa primero la pantalla disponible y después vuelve al tamaño anterior de ventana, reajustando sus elementos en ambos casos
+#### Scenario: Se abre la calculadora en una ventana normal
+- **WHEN** se inicia la aplicación en modo ventana
+- **THEN** el sistema muestra su barra de título y los controles nativos disponibles para cerrar, minimizar y maximizar o restaurar la ventana
+
+#### Scenario: Se usa un control nativo de ventana
+- **WHEN** el usuario activa un control nativo disponible
+- **THEN** el sistema cierra, minimiza o maximiza/restaura la ventana según el control y sus convenciones
+
+## REMOVED Requirements
+
+### Requirement: La ventana permite alternar pantalla completa
+**Reason**: La aplicación usará la barra y los controles nativos de la ventana; el botón propio de pantalla completa duplicaba una acción de ventana dentro del contenido.
+**Migration**: Para maximizar o restaurar la ventana, usar los controles nativos disponibles del sistema. La aplicación ya no ofrece un botón propio de pantalla completa.

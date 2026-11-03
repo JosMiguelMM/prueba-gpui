@@ -1,7 +1,8 @@
 //! Presentación de la calculadora mediante una interfaz nativa de GPUI.
 
 use gpui::{
-    App, Bounds, Context, Window, WindowBounds, WindowOptions, div, prelude::*, px, rgb, size,
+    App, Bounds, Context, TitlebarOptions, Window, WindowBounds, WindowOptions, div, prelude::*,
+    px, rgb, size,
 };
 use gpui_platform::application;
 
@@ -21,19 +22,6 @@ impl Render for Calculadora {
             .gap(px(8. * escala))
             .p(px(16. * escala))
             .bg(rgb(0x202124))
-            .child(
-                div()
-                    .id("pantalla-completa")
-                    .cursor_pointer()
-                    .text_size(px(14. * escala))
-                    .text_color(rgb(0xffffff))
-                    .on_click(|_, window, _| window.toggle_fullscreen())
-                    .child(if window.is_fullscreen() {
-                        "Salir de pantalla completa"
-                    } else {
-                        "Pantalla completa"
-                    }),
-            )
             .child(
                 div()
                     .flex_1()
@@ -89,7 +77,12 @@ pub fn iniciar() {
             WindowOptions {
                 window_bounds: Some(bounds),
                 window_min_size: Some(size(px(280.), px(400.))),
+                titlebar: Some(TitlebarOptions {
+                    title: Some("Calculadora".into()),
+                    ..Default::default()
+                }),
                 is_resizable: true,
+                is_minimizable: true,
                 ..Default::default()
             },
             |_, cx| cx.new(|_| Calculadora),
