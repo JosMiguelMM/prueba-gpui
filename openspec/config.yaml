@@ -2,33 +2,68 @@ schema: spec-driven
 githubCopilot:
   cloudAgent: true
 
-# Project context (optional)
-# Add only constraints that should guide OpenSpec artifacts and workflows.
-# Include constraints an agent cannot infer by reading the code.
-# Keep general project documentation and discoverable codebase facts out.
-# Example:
-#   context: |
-#     Designs and tasks must cover Windows, macOS, and Linux
-#     Write all artifacts in Spanish
+# Criterios transversales para los artefactos y los flujos de trabajo.
+context: |
+  Redacta en español todos los artefactos, explicaciones, comentarios,
+  documentación y mensajes nuevos dirigidos al usuario. Conserva los nombres
+  exigidos por Rust, GPUI, las API y las herramientas externas.
 
-# Per-artifact rules (optional)
-# Add custom rules for specific artifacts.
-# Example:
-#   rules:
-#     proposal:
-#       - Keep proposals under 500 words
-#       - Always state what is out of scope
-#     tasks:
-#       - Break tasks into chunks of max 2 hours
+  Prioriza código eficiente, seguro, legible e idiomático en Rust. Evita copias,
+  clonaciones, asignaciones de memoria y cálculos repetidos innecesarios,
+  especialmente en las rutas de renderizado e interacción. Justifica las
+  optimizaciones con mediciones cuando corresponda; no sacrifiques claridad
+  ni corrección por optimizaciones prematuras.
 
-# Per-operation guidance (optional)
-# Add advisory guidance for how apply and archive work should be conducted.
-# This is separate from artifact rules above.
-# Example:
-#   operations:
-#     apply:
-#       guidance:
-#         - Keep test summaries concise
-#     archive:
-#       guidance:
-#         - Summarize the archive outcome before finishing
+  Aplica buenas prácticas de programación: responsabilidades bien delimitadas,
+  separación entre lógica de cálculo e interfaz, reutilización razonable,
+  manejo explícito de errores y pruebas de comportamiento y casos límite.
+  Prefiere abstracciones sencillas y dependencias existentes; evita complejidad
+  y dependencias nuevas sin una necesidad justificada.
+
+  Todo cambio de código debe incluir la documentación nueva o actualizada que
+  corresponda. Documenta en español los módulos con //! y los tipos, funciones,
+  métodos y demás elementos relevantes con ///, siguiendo Rustdoc, también
+  para elementos privados cuando ayude a comprenderlos. Mantén un formato
+  uniforme y cuidado, con un resumen claro, identificadores entre comillas
+  invertidas y enlaces intra-doc cuando aporten valor. Añade secciones como
+  # Ejemplos, # Errores, # Pánicos y # Seguridad únicamente cuando proceda.
+  Los ejemplos deben ser válidos y comprobables cuando sea posible. Explica
+  propósito, comportamiento, supuestos y casos límite; evita comentarios
+  decorativos, redundantes o que se limiten a repetir el código.
+
+# Reglas específicas de los documentos de planificación.
+rules:
+  proposal:
+    - Explica el problema, el objetivo, el alcance y lo que queda fuera del cambio.
+    - Incluye criterios de éxito verificables y necesidades de rendimiento cuando existan.
+  design:
+    - Justifica las decisiones técnicas y sus alternativas sin introducir complejidad innecesaria.
+    - Describe el manejo de errores, los casos límite y la separación de responsabilidades.
+    - Evalúa el impacto en rendimiento y cómo se medirá si se propone una optimización.
+    - Describe la documentación Rustdoc y la estrategia de pruebas necesarias.
+  specs:
+    - Redacta los requisitos y escenarios en español, conservando los encabezados y palabras clave que exija el esquema de OpenSpec.
+    - Define comportamientos observables y verificables, incluidos errores y casos límite aplicables.
+    - Evita requisitos de rendimiento vagos; usa criterios medibles cuando sean necesarios.
+  tasks:
+    - Divide el trabajo en tareas concretas, acotadas y verificables.
+    - Incluye la creación o actualización de documentación Rustdoc en español para el código afectado.
+    - Incluye pruebas de los comportamientos modificados y sus casos límite.
+    - Incluye las comprobaciones de formato, Clippy, pruebas y documentación que correspondan al cambio.
+
+# Guías para la implementación y el cierre de cambios.
+operations:
+  apply:
+    guidance:
+      - Mantén los cambios enfocados y respeta el trabajo existente; no realices refactorizaciones ajenas al objetivo.
+      - Implementa Rust idiomático y eficiente; evita clones y asignaciones innecesarios sin perjudicar la legibilidad.
+      - Documenta o actualiza en español cada elemento relevante agregado o modificado, usando //! y /// según corresponda.
+      - Usa comentarios internos en español solo para explicar decisiones o intenciones no evidentes.
+      - Maneja explícitamente los errores y evita unwrap o expect en rutas recuperables.
+      - Agrega o actualiza las pruebas pertinentes, incluidos división entre cero y raíz cuadrada de negativos cuando apliquen.
+      - Ejecuta cargo fmt --check, cargo clippy --all-targets -- -D warnings, cargo test y cargo doc --no-deps cuando correspondan; comprueba también los ejemplos con cargo test --doc.
+      - Informa las comprobaciones ejecutadas, sus resultados y cualquier impedimento; no afirmes validaciones que no hayas realizado.
+  archive:
+    guidance:
+      - Comprueba que los artefactos reflejen el comportamiento implementado y que no se oculten tareas pendientes.
+      - Resume en español los cambios, las validaciones realizadas y las limitaciones o pendientes conocidos.
