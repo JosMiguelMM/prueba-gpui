@@ -4,6 +4,19 @@ githubCopilot:
 
 # Criterios transversales para los artefactos y los flujos de trabajo.
 context: |
+  La aplicación es una calculadora de escritorio nativa. El alcance inicial es
+  una calculadora básica con suma, resta, multiplicación, división, porcentajes
+  y raíces cuadradas. Está previsto ampliarla en el futuro: mantén una estructura
+  que permita incorporar nuevas funciones gradualmente, sin implementar funciones
+  no solicitadas ni crear abstracciones para necesidades hipotéticas.
+
+  Usa obligatoriamente Rust para la implementación y GPUI para la interfaz
+  gráfica de escritorio. No sustituyas estas tecnologías ni introduzcas otros
+  frameworks de interfaz sin una solicitud explícita. Usa Rust estable y una
+  versión reciente y compatible de GPUI; verifica las versiones y su compatibilidad
+  antes de modificar la configuración o agregar dependencias, sin inventar números
+  de versión ni actualizar dependencias ajenas al cambio.
+
   Redacta en español todos los artefactos, explicaciones, comentarios,
   documentación y mensajes nuevos dirigidos al usuario. Conserva los nombres
   exigidos por Rust, GPUI, las API y las herramientas externas.
