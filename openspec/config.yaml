@@ -44,6 +44,10 @@ context: |
   propósito, comportamiento, supuestos y casos límite; evita comentarios
   decorativos, redundantes o que se limiten a repetir el código.
 
+  Ningún archivo de código debe superar las 500 líneas. Si un cambio alcanza
+  ese límite, divide el contenido en módulos o archivos con responsabilidades
+  claras, sin fragmentarlo artificialmente ni sacrificar la cohesión.
+
 # Reglas específicas de los documentos de planificación.
 rules:
   proposal:
